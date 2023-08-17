@@ -1,20 +1,17 @@
+import Logo from '@/components/Logo';
+import Viewer from '@/components/Viewer';
 import { createClient } from '@/prismicio';
-import { PrismicNextImage } from '@prismicio/next';
-import { PrismicRichText } from '@prismicio/react';
 
 export default async function Home() {
   const client = createClient();
   const { data } = await client.getByUID("home_page", "wrong-biennale");
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-20">
-      <PrismicNextImage
-        className="relative w-6/12"
-        field={data.hero}
-        alt="Hero"
-        priority
-      />
-      <PrismicRichText field={data.content} />
+    <main className="flex flex-col items-center h-screen p-[80px] pt-0 overflow-hidden">
+      <div className='absolute top-0 left-0'>
+        <Logo />
+      </div>
+      <Viewer image={data.hero} />
     </main>
   )
 }

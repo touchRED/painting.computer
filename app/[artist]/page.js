@@ -11,7 +11,7 @@ export default async function Home({ params }) {
       <div className='absolute top-0 left-0'>
         <Logo />
       </div>
-      <Viewer data={data} />
+      <Viewer image={data.images[0].image} />
     </main>
   )
 }

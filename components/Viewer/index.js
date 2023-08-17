@@ -9,7 +9,7 @@ import useMeasure from "react-use-measure";
 
 const AnimatedPrismicNextImage = animated(PrismicNextImage);
 
-export default function Viewer({ data }) {
+export default function Viewer({ image }) {
     const [imgRef, bounds] = useMeasure()
     const [selected] = useState(0)
     const [{ x, y, scale }, scaleApi] = useSpring(() => ({ scale: 1, x: 0, y: 0 }))
@@ -37,8 +37,8 @@ export default function Viewer({ data }) {
             <div className="flex justify-center">
                 <div ref={imgRef}>
                     <AnimatedPrismicNextImage
-                        className="relative h-auto max-w-full w-auto"
-                        field={data.images[selected].image}
+                        className="relative h-screen max-w-full w-auto"
+                        field={image}
                         priority
                         style={{
                             maxHeight: "calc(100vh - 80px)",
