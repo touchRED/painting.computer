@@ -14,15 +14,16 @@ export default function Viewer({ image }) {
     const [selected] = useState(0)
     const [{ x, y, scale }, scaleApi] = useSpring(() => ({ scale: 1, x: 0, y: 0 }))
 
-    useWheel(({ offset: [, y] }) => {
+    const bindWheel = useWheel(({ offset: [, y] }) => {
         scaleApi.start({ scale: y / 1000 })
-    }, { target: document, bounds: { top: 1000 }, from: () => [0, scale.get() * 1000] })
-    useMove(({ xy: [x, y] }) => {
+    }, { bounds: { top: 1000 }, from: () => [0, scale.get() * 1000] })
+
+    const bindMove = useMove(({ xy: [x, y] }) => {
         scaleApi.start({ x: x, y: y })
-    }, { target: document })
+    })
 
     return (
-        <div className="w-full">
+        <div className="w-full" {...bindWheel()} {...bindMove()}>
             {/* {data.images.map((img, i) => (
                 <div className="flex flex-col items-center" key={i}>
                 <PrismicNextImage
