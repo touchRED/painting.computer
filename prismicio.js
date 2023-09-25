@@ -19,7 +19,11 @@ const routes = [
   {
     type: "home_page",
     path: "/",
-  }
+  },
+  {
+    type: 'artist',
+    path: '/:artist',
+  },
 ];
 
 /**

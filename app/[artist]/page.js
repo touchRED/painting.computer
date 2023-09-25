@@ -15,3 +15,13 @@ export default async function Home({ params }) {
     </main>
   )
 }
+
+export async function generateStaticParams() {
+  const client = createClient()
+
+  const artists = await client.getAllByType('artist')
+
+  return artists.map((artist) => {
+    return { artist: artist.uid }
+  })
+}
