@@ -4,7 +4,7 @@ import { createClient } from '@/prismicio';
 
 export default async function Home({ params }) {
   const client = createClient();
-  const { data } = await client.getByUID("artist", params.uid);
+  const { data } = await client.getByUID("artist", params.artist);
 
   return (
     <main className="flex flex-col items-center h-screen p-[80px] pt-0 overflow-hidden">
