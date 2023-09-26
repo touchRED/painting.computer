@@ -22,6 +22,6 @@ export async function generateStaticParams() {
   const artists = await client.getAllByType('artist')
 
   return artists.map((artist) => {
-    return { uid: artist.uid }
+    return { artist: artist.uid }
   })
 }
