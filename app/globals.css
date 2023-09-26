@@ -19,3 +19,19 @@
 body {
   overflow: hidden;
 }
+
+.hp-images {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.hp-images::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.hp-content {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.hp-content::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}

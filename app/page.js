@@ -24,7 +24,7 @@ export default async function Home() {
 
   return (
     <main className="grid grid-cols-12 gap-[20px] h-screen px-[20px] py-0">
-      <div className="col-span-5 text-lg py-[20px] max-h-screen overflow-auto">
+      <div className="col-span-5 text-lg py-[20px] max-h-screen overflow-auto hp-content">
         <LogoFull className="w-[385px] mb-[20px]" />
         <PrismicRichText field={data.content} />
         <div className='mt-[20px]'>
@@ -33,7 +33,7 @@ export default async function Home() {
           ))}
         </div>
       </div>
-      <div className="col-span-7 grid grid-cols-4 gap-[20px] py-[20px] max-h-screen overflow-auto">
+      <div className="col-span-7 grid grid-cols-4 gap-[20px] py-[20px] max-h-screen overflow-auto hp-images">
         {chunks.map((chunk, i) => (
           <div key={`chunk_${i}`}>
             {chunk.map((image, j) => (
