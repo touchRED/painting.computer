@@ -22,6 +22,7 @@ const routes = [
   },
   {
     type: 'artist',
+    uid: '*',
     path: '/:uid',
   },
 ];
