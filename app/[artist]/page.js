@@ -1,6 +1,7 @@
 import Logo from '@/components/Logo';
 import Viewer from '@/components/Viewer';
 import { createClient } from '@/prismicio';
+import Link from 'next/link';
 
 export default async function Home({ params }) {
   const client = createClient();
@@ -9,9 +10,11 @@ export default async function Home({ params }) {
   return (
     <main className="flex flex-col items-center h-screen p-[80px] pt-0 overflow-hidden">
       <div className='absolute top-0 left-0'>
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
       </div>
-      <Viewer image={data.images[0].image} />
+      <Viewer images={data.images} />
     </main>
   )
 }

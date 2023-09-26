@@ -9,9 +9,10 @@ import useMeasure from "react-use-measure";
 
 const AnimatedPrismicNextImage = animated(PrismicNextImage);
 
-export default function Viewer({ image }) {
+export default function Viewer({ images }) {
+    console.log(images)
     const [imgRef, bounds] = useMeasure()
-    const [selected] = useState(0)
+    const [selected, setSelected] = useState(0)
     const [{ x, y, scale }, scaleApi] = useSpring(() => ({ scale: 1, x: 0, y: 0 }))
 
     const bindWheel = useWheel(({ offset: [, y] }) => {
@@ -24,22 +25,11 @@ export default function Viewer({ image }) {
 
     return (
         <div className="w-full" {...bindWheel()} {...bindMove()}>
-            {/* {data.images.map((img, i) => (
-                <div className="flex flex-col items-center" key={i}>
-                <PrismicNextImage
-                    className="relative w-6/12"
-                    field={img.image}
-                    alt="Hero"
-                    priority
-                />
-                <PrismicRichText field={img.description} />
-                </div>
-            ))} */}
             <div className="flex justify-center">
                 <div ref={imgRef}>
                     <AnimatedPrismicNextImage
                         className="relative h-screen max-w-full w-auto"
-                        field={image}
+                        field={images[selected].image}
                         priority
                         style={{
                             maxHeight: "calc(100vh - 80px)",
@@ -48,9 +38,15 @@ export default function Viewer({ image }) {
                         }}
                     />
                 </div>
-                {/* <PrismicRichText field={data.images[selected].description} /> */}
             </div>
-            {/* {data.handle} */}
+            <div className="flex justify-center">
+                <div className="mr-auto">artists</div>
+                <div className="flex">
+                    <div className="mr-10 cursor-pointer" onClick={() => setSelected(selected === images.length - 1 ? 0 : selected + 1)}>&lt;</div>
+                    <div className="cursor-pointer" onClick={() => setSelected(selected === 0 ? images.length - 1 : selected - 1)}>&gt;</div>
+                </div>
+                <div className="ml-auto">details</div>
+            </div>
         </div>
     )
 }
