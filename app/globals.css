@@ -16,8 +16,29 @@
   }
 }
 
+html {
+  background-color: #F7F7F6;
+}
+
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+.site-gradient {
+  background: linear-gradient(90deg, #B0B0B0 0%, rgba(176, 176, 176, 0.00) 90.97%);
+  z-index: -1;
+}
+
+.site-gradient-viewer {
+  background: linear-gradient(180deg, #B0B0B0 0%, rgba(176, 176, 176, 0.00) 90.97%);
+  /* background: linear-gradient(180deg, #444 0%, rgba(68, 68, 68, 0.00) 90.97%); */
+  z-index: -1;
+}
+
+@media (min-width: 1024px) {
+  body {
+    overflow: hidden;
+  }
 }
 
 .hp-images {

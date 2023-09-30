@@ -6,7 +6,7 @@
   "status": true,
   "json": {
     "Main": {
-      "uid": { "config": { "label": "UID" }, "type": "UID" },
+      "uid": { "config": { "label": "UID", "useAsTitle" : true }, "type": "UID" },
       "images": {
         "type": "Group",
         "config": {
