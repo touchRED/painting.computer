@@ -47,7 +47,7 @@ export default function Viewer({ images, handle }) {
             </div>
             <div className="flex lg:flex-col w-full lg:w-auto justify-between lg:justify-start items-start absolute pr-[40px] lg:pr-0 left-[20px] bottom-[20px] lg:bottom-[80px]">
                 {showDetails && (
-                    <div className="absolute bottom-[40px] lg:static bg-[#F7F7F6] mb-[20px] max-w-[435px]">
+                    <div className="absolute bottom-[40px] lg:static bg-[#F7F7F6] mb-[20px] pr-[40px] lg:pr-0 w-full lg:w-auto lg:max-w-[435px]">
                         <div className="mb-[20px]">{title}</div>
                         <div>{info}</div>
                         <Link target="_blank" className="inline lg:hidden border-b border-b-[#000] mb-1" href={`https://www.instagram.com/${handle}`}>@{handle}</Link>
