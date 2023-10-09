@@ -2,7 +2,9 @@ import LogoFull from '@/components/LogoFull';
 import { createClient } from '@/prismicio';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
+import Image from 'next/image';
 import Link from 'next/link';
+import wrong from 'public/wrong.png'
 
 const chunk = (input, size) => {
   return input.reduce((arr, item, idx) => {
@@ -35,11 +37,18 @@ export default async function Home() {
           <LogoFull className="w-full lg:w-[385px]" />
         </div>
         <PrismicRichText field={data.content} />
-        <div className='mt-[20px] pb-[80px] lg:pb-0 flex flex-wrap'>
+        <div className='mt-[20px] flex flex-wrap'>
           {artists.map((artist, i) => (
             <Link className="font-semibold mr-5" key={i} href={`/${artist.uid}`}>@{artist.uid}</Link>
           ))}
         </div>
+        <Link href="https://thewrong.org" target='_blank'>
+          <Image
+            className="inline-block w-[100px] h-auto relative right-1 mt-6 pb-[20px] lg:pb-0"
+            src={wrong}
+            alt="The Wrong Biennale"
+          />
+        </Link>
       </div>
       <div className="hidden lg:grid col-span-7 grid-cols-4 gap-[20px] py-[20px] max-h-screen overflow-auto hp-images">
         {chunks.map((chunk, i) => (
