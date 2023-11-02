@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Neue Haas Unica W1G";
+  src: url("https://db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.eot");
+  src: url("https://db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/31267e36af6f8dac65a56e78345e945e.svg#Neue Haas Unica W1G")format("svg");
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -22,6 +32,7 @@ html {
 
 body {
   /* overflow: hidden; */
+  font-family: "Neue Haas Unica W1G", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .site-gradient {

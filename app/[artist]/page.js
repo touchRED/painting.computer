@@ -17,7 +17,10 @@ export default async function Home({ params }) {
         </Link>
       </div>
       <div className='col-span-12 lg:col-start-3 lg:col-span-10 flex items-center lg:block'>
-        <Viewer images={data.images} handle={uid} />
+        <Viewer
+          images={data.images}
+          handle={uid}
+        />
       </div>
       <div className='site-gradient-viewer w-screen h-[89px] lg:h-[159px] absolute top-0 left-0'></div>
     </main>

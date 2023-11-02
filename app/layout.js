@@ -1,9 +1,6 @@
 import { PrismicPreview } from '@prismicio/next'
-import { Inter } from 'next/font/google'
 import { repositoryName } from '@/prismicio'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'painting.computer',
@@ -13,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         {children}
         <PrismicPreview repositoryName={repositoryName} />
       </body>

@@ -6,6 +6,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 import wrong from 'public/wrong.png'
 
+function baseRandom(lower, upper) {
+  return lower + Math.floor(Math.random() * (upper - lower + 1));
+}
+
+function shuffle(array, size) {
+  var index = -1,
+      length = array.length,
+      lastIndex = length - 1;
+
+  size = size === undefined ? length : size;
+  while (++index < size) {
+    var rand = baseRandom(index, lastIndex),
+        value = array[rand];
+
+    array[rand] = array[index];
+    array[index] = value;
+  }
+  array.length = size;
+  return array;
+}
+
 const chunk = (input, size) => {
   return input.reduce((arr, item, idx) => {
     return idx % size === 0
@@ -18,11 +39,8 @@ export default async function Home() {
   const client = createClient();
   const { data } = await client.getByUID("home_page", "wrong-biennale");
   const artists = await client.getAllByType('artist')
-  // console.log("artists", artists)
-  const images = artists.reduce((acc, cur, i) => acc.concat(cur.data.images), []);
-  // artists.forEach(artist => images = images.concat(artist.data.images))
-  console.log(images)
-  const chunks = chunk(images, Math.ceil(images.length / 4))
+  const images = artists.reduce((acc, cur) => acc.concat(cur.data.images.map((img, i) =>({idx: i, artist: cur.uid, ...img}))), []);
+  const chunks = chunk(shuffle(images), Math.ceil(images.length / 4))
 
   return (
     <main className="grid grid-cols-12 gap-[20px] h-screen px-[20px] py-0 lg:overflow-hidden">
@@ -37,29 +55,30 @@ export default async function Home() {
           <LogoFull className="w-full lg:w-[385px]" />
         </div>
         <PrismicRichText field={data.content} />
-        <div className='mt-[20px] flex flex-wrap'>
-          {artists.map((artist, i) => (
-            <Link className="font-semibold mr-5" key={i} href={`/${artist.uid}`}>@{artist.uid}</Link>
-          ))}
-        </div>
         <Link href="https://thewrong.org" target='_blank'>
           <Image
-            className="inline-block w-[100px] h-auto relative right-1 mt-6 pb-[20px] lg:pb-0"
+            className="inline-block w-[200px] h-auto relative right-1 mt-[20px]"
             src={wrong}
             alt="The Wrong Biennale"
           />
         </Link>
+        <div className='mt-[20px] pb-[20px] flex flex-wrap'>
+          {artists.map((artist, i) => (
+            <Link className="font-semibold underline mr-5" key={i} href={`/${artist.uid}`}>@{artist.uid}</Link>
+          ))}
+        </div>
       </div>
       <div className="hidden lg:grid col-span-7 grid-cols-4 gap-[20px] py-[20px] max-h-screen overflow-auto hp-images">
         {chunks.map((chunk, i) => (
           <div key={`chunk_${i}`}>
             {chunk.map((image, j) => (
-              <PrismicNextImage
-                  className="max-w-full w-auto mb-[20px]"
-                  field={image.image}
-                  key={`${i}_${j}`}
-                  priority={j < 4}
-              />
+              <Link key={`${i}_${j}`} href={`/${image.artist}?img=${image.idx}`}>
+                <PrismicNextImage
+                    className="max-w-full w-auto mb-[20px]"
+                    field={image.image}
+                    priority={j < 4}
+                />
+              </Link>
             ))}
           </div>
         ))}
